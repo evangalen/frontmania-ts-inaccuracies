@@ -1,11 +1,11 @@
-import type { MatcherFunction } from "expect";
+import type { MatcherFunction } from 'expect';
 
 // typically declared in `setupTests.ts` file
 const toAllSatisfy: MatcherFunction<[predicate: (item: unknown) => boolean]> =
   function (this, actual: any, predicate) {
     return {
       pass: actual.every(predicate),
-      message: () => "Some items do not match the predicate",
+      message: () => 'Some items do not match the predicate',
     };
   };
 
@@ -13,6 +13,7 @@ expect.extend({ toAllSatisfy });
 
 // somewhere inside a `.spec.ts` file
 expect([true, 1, 9]).toAllSatisfy((item: any) => !!item);
+//                   ^?
 
 // ✂╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴
 // 🠺 TS error on `.toAllSatisfy` call on result of `expect(`..`)` call
@@ -23,7 +24,7 @@ expect([true, 1, 9]).toAllSatisfy((item: any) => !!item);
   > = function (this, actual: any, predicate) {
     return {
       pass: actual.every(predicate),
-      message: () => "Some items do not match the predicate",
+      message: () => 'Some items do not match the predicate',
     };
   };
 
@@ -32,6 +33,7 @@ expect([true, 1, 9]).toAllSatisfy((item: any) => !!item);
   // somewhere inside a `.spec.ts` file
   // @ts-expect-error
   expect([true, 1, 9]).toAllSatisfy((item: any) => !!item);
+  //                   ^?
 })(); // 🠼
 // 🠺 Declaration merging Jest `Matchers` interface
 (() => {
@@ -41,7 +43,7 @@ expect([true, 1, 9]).toAllSatisfy((item: any) => !!item);
   > = function (this, actual: any, predicate) {
     return {
       pass: actual.every(predicate),
-      message: () => "Some items do not match the predicate",
+      message: () => 'Some items do not match the predicate',
     };
   };
 
@@ -58,4 +60,5 @@ expect([true, 1, 9]).toAllSatisfy((item: any) => !!item);
 
   // somewhere inside a `.spec.ts` file
   expect([true, 1, 9]).toAllSatisfy(item => !!item);
+  //                   ^?
 })(); // 🠼

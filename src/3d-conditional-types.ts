@@ -1,30 +1,88 @@
-import { expectTypeOf } from "expect-type";
+type MapIsoDate<Type extends string | null> = Type extends string ? Date : null;
+//   ^?
 
-type Flatten<Type> = Type;
+const mapIsoDate = <Type extends string | null, Result = MapIsoDate<Type>>(isoDate: Type): Result => {
+  if (!(typeof isoDate === 'string')) {
+    return null as Result;
+  }
 
-expectTypeOf<Flatten<string[]>>().toEqualTypeOf<string>();
-expectTypeOf<Flatten<string>>().toEqualTypeOf<string>();
+  return new Date(isoDate) as Result;
+};
+
+const dateTypeExpected = mapIsoDate('2023-09-01');
+//    ^?
+const nullTypeExpected = mapIsoDate(null);
+//    ^?
 
 // ✂╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴
-// 🠺 incomplete implementation
+// 🠺 mapIsoDate with inferred return type
 (() => {
-  type Flatten<Type> = Type;
+  const mapIsoDate = (isoDate: string | null) => {
+    if (!(typeof isoDate === 'string')) {
+      return null;
+    }
 
-  // @ts-expect-error
-  expectTypeOf<Flatten<string[]>>().toEqualTypeOf<string>();
-  expectTypeOf<Flatten<string>>().toEqualTypeOf<string>();
+    return new Date(isoDate);
+  };
+
+  const dateTypeExpected = mapIsoDate('2023-09-01');
+  //    ^?
+  const nullTypeExpected = mapIsoDate(null);
+  //    ^?
 })(); // 🠼
-// 🠺 using brackets and []
+// 🠺 inline conditional type using typeof isoDate (TS error)
 (() => {
-  type Flatten<Type> = Type extends (infer Item)[] ? Item : Type;
+  const mapIsoDate = (
+    isoDate: string | null,
+  ): typeof isoDate extends string ? Date : null => {
+    if (!(typeof isoDate === 'string')) {
+      return null;
+    }
 
-  expectTypeOf<Flatten<string[]>>().toEqualTypeOf<string>();
-  expectTypeOf<Flatten<string>>().toEqualTypeOf<string>();
+    // @ts-expect-error TS2322: Type 'Date' is not assignable to type 'null'.
+    return new Date(isoDate);
+  };
+
+  const dateTypeExpected = mapIsoDate('2023-09-01');
+  //    ^?
+  const nullTypeExpected = mapIsoDate(null);
+  //    ^?
 })(); // 🠼
-// 🠺 using Array<..>
+// 🠺 type parameter and inline conditional type
 (() => {
-  type Flatten<Type> = Type extends Array<infer Item> ? Item : Type;
+  const mapIsoDate = <Type extends string | null>(
+    isoDate: Type,
+  ): Type extends string ? Date : null => {
+    if (!(typeof isoDate === 'string')) {
+      return null as any;
+    }
 
-  expectTypeOf<Flatten<string[]>>().toEqualTypeOf<string>();
-  expectTypeOf<Flatten<string>>().toEqualTypeOf<string>();
+    return new Date(isoDate) as any;
+  };
+
+  const dateTypeExpected = mapIsoDate('2023-09-01');
+  //    ^?
+  const nullTypeExpected = mapIsoDate(null);
+  //    ^?
+})(); // 🠼
+// 🠺 utility type and less ugly type assertions
+(() => {
+  type MapIsoDate<Type extends string | null> = Type extends string
+    ? Date
+    : null;
+
+  const mapIsoDate = <Type extends string | null>(
+    isoDate: Type,
+  ): Type extends string ? Date : null => {
+    if (!(typeof isoDate === 'string')) {
+      return null as MapIsoDate<Type>;
+    }
+
+    return new Date(isoDate) as MapIsoDate<Type>;
+  };
+
+  const dateTypeExpected = mapIsoDate('2023-09-01');
+  //    ^?
+  const nullTypeExpected = mapIsoDate(null);
+  //    ^?
 })(); // 🠼

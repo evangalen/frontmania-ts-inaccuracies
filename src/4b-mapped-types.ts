@@ -11,17 +11,29 @@ type _ = { [Key in keyof Person]: Person[Key] };
   type _ = { [Key in keyof Person]: Person[Key] };
   //   ^?
 })(); // 🠼
-// 🠺 all readonly and optional
+// 🠺 unionize each Person property (using IIMT)
 (() => {
   type Person = { readonly id: number; name: string; alive?: boolean };
 
-  type _ = { readonly [Key in keyof Person]?: Person[Key] };
+  type _ = { [Key in keyof Person]: Person[Key] }[keyof Person];
   //   ^?
 })(); // 🠼
-// 🠺 all writeable and required
+// 🠺 Indexed Access Type with keyof Person
 (() => {
   type Person = { readonly id: number; name: string; alive?: boolean };
 
-  type _ = { -readonly [Key in keyof Person]-?: Person[Key] };
+  type _ = Person[keyof Person];
   //   ^?
+})(); // 🠼
+// 🠺 CSSLength IIMT producing { length: number; unit: .. } based on CSSUnits
+(() => {
+  type CSSUnits = 'px' | 'em' | 'rem' | 'vw' | 'vh';
+
+  type CSSLength = {
+    //   ^?
+    [Item in CSSUnits]: {
+      length: number;
+      unit: Item;
+    };
+  }[CSSUnits];
 })(); // 🠼

@@ -1,63 +1,26 @@
-import { expectTypeOf } from "expect-type";
+import { expectTypeOf } from 'expect-type';
 
-type FirstParameter<Type> = Type;
+type IsString<Type> = Type extends string ? true : false;
 
-expectTypeOf<
-  FirstParameter<(a: string, b: number) => void>
->().toEqualTypeOf<string>();
-expectTypeOf<FirstParameter<(a: string) => boolean>>().toEqualTypeOf<string>();
-expectTypeOf<FirstParameter<() => number>>().toBeNever();
+expectTypeOf<IsString<string>>().toEqualTypeOf<true>();
+expectTypeOf<IsString<'a string literal'>>().toEqualTypeOf<true>();
+expectTypeOf<IsString<string | number>>().toEqualTypeOf<false>();
 
 // ✂╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴
-// 🠺 incomplete implementation
+// 🠺 buggy implementation of IsString
 (() => {
-  type FirstParameter<Type> = Type;
+  type IsString<Type> = Type extends string ? true : false;
 
-  expectTypeOf<
-    FirstParameter<(a: string, b: number) => void>
-    // @ts-expect-error
-  >().toEqualTypeOf<string>();
+  expectTypeOf<IsString<string>>().toEqualTypeOf<true>();
+  expectTypeOf<IsString<'a string literal'>>().toEqualTypeOf<true>();
   // @ts-expect-error
-  expectTypeOf<
-    FirstParameter<(a: string) => boolean>
-  >().toEqualTypeOf<string>();
-  // @ts-expect-error
-  expectTypeOf<FirstParameter<() => number>>().toBeNever();
+  expectTypeOf<IsString<string | number>>().toEqualTypeOf<false>();
 })(); // 🠼
-// 🠺 working, except for no-arg function
+// 🠺 wrapping types in [..]
 (() => {
-  type FirstParameter<Type> = Type extends (
-    firstArg: infer FirstArg,
-    ...rest: any[]
-  ) => any
-    ? FirstArg
-    : never;
+  type IsString<Type> = [Type] extends [string] ? true : false;
 
-  expectTypeOf<
-    FirstParameter<(a: string, b: number) => void>
-  >().toEqualTypeOf<string>();
-  expectTypeOf<
-    FirstParameter<(a: string) => boolean>
-  >().toEqualTypeOf<string>();
-  // @ts-expect-error
-  expectTypeOf<FirstParameter<() => number>>().toBeNever();
-})(); // 🠼
-// 🠺 working for all functions
-(() => {
-  type FirstParameter<Type> = Type extends (
-    firstArg: infer FirstArg,
-    ...rest: any[]
-  ) => any
-    ? Type extends () => any
-      ? never
-      : FirstArg
-    : never;
-
-  expectTypeOf<
-    FirstParameter<(a: string, b: number) => void>
-  >().toEqualTypeOf<string>();
-  expectTypeOf<
-    FirstParameter<(a: string) => boolean>
-  >().toEqualTypeOf<string>();
-  expectTypeOf<FirstParameter<() => number>>().toBeNever();
+  expectTypeOf<IsString<string>>().toEqualTypeOf<true>();
+  expectTypeOf<IsString<'a string literal'>>().toEqualTypeOf<true>();
+  expectTypeOf<IsString<string | number>>().toEqualTypeOf<false>();
 })(); // 🠼

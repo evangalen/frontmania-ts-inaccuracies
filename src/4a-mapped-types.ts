@@ -1,4 +1,4 @@
-type PanelKey = "header" | "body";
+type PanelKey = 'header' | 'body';
 
 type Panels = { [key: string]: boolean };
 //              ^^^^^^^^^^^^^ index signature
@@ -11,7 +11,7 @@ const visiblePanels: Panels = {
 // ✂╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴
 // 🠺 using index signature in Panels type
 (() => {
-  type PanelKey = "header" | "body";
+  type PanelKey = 'header' | 'body';
 
   type Panels = { [key: string]: boolean };
   //              ^^^^^^^^^^^^^ index signature
@@ -23,7 +23,7 @@ const visiblePanels: Panels = {
 })(); // 🠼
 // 🠺 mapped type and fixed TS error in visiblePanels object
 (() => {
-  type PanelKey = "header" | "body";
+  type PanelKey = 'header' | 'body';
 
   type Panels = { [key in PanelKey]: boolean };
 
