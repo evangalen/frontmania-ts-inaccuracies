@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "Node16",
+    "types": ["node", "jest"],
+    "strict": true,
+    "skipLibCheck": true
+  }
+}

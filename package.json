@@ -1,0 +1,13 @@
+{
+  "name": "ts-inaccuracies",
+  "private": true,
+  "author": "Emil van Galen",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^29.5.5",
+    "expect": "^29.7.0",
+    "expect-type": "^0.16.0",
+    "jest": "^29.7.0",
+    "typescript": "^5.2.2"
+  }
+}
