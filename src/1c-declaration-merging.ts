@@ -1,13 +1,16 @@
 import type { MatcherFunction } from 'expect';
 
 // typically declared in `setupTests.ts` file
-const toAllSatisfy: MatcherFunction<[predicate: (item: unknown) => boolean]> =
-  function (this, actual: any, predicate) {
-    return {
-      pass: actual.every(predicate),
-      message: () => 'Some items do not match the predicate',
-    };
+const toAllSatisfy: MatcherFunction<[predicate: (item: unknown) => boolean]> = function (
+  this,
+  actual: any,
+  predicate,
+) {
+  return {
+    pass: actual.every(predicate),
+    message: () => 'Some items do not match the predicate',
   };
+};
 
 expect.extend({ toAllSatisfy });
 
@@ -19,14 +22,13 @@ expect([true, 1, 9]).toAllSatisfy((item: any) => !!item);
 // 🠺 TS error on `.toAllSatisfy` call on result of `expect(`..`)` call
 (() => {
   // typically declared in `setupTests.ts` file
-  const toAllSatisfy: MatcherFunction<
-    [predicate: (item: unknown) => boolean]
-  > = function (this, actual: any, predicate) {
-    return {
-      pass: actual.every(predicate),
-      message: () => 'Some items do not match the predicate',
+  const toAllSatisfy: MatcherFunction<[predicate: (item: unknown) => boolean]> =
+    function (this, actual: any, predicate) {
+      return {
+        pass: actual.every(predicate),
+        message: () => 'Some items do not match the predicate',
+      };
     };
-  };
 
   expect.extend({ toAllSatisfy });
 
@@ -38,14 +40,13 @@ expect([true, 1, 9]).toAllSatisfy((item: any) => !!item);
 // 🠺 Declaration merging Jest `Matchers` interface
 (() => {
   // typically declared in `setupTests.ts` file
-  const toAllSatisfy: MatcherFunction<
-    [predicate: (item: unknown) => boolean]
-  > = function (this, actual: any, predicate) {
-    return {
-      pass: actual.every(predicate),
-      message: () => 'Some items do not match the predicate',
+  const toAllSatisfy: MatcherFunction<[predicate: (item: unknown) => boolean]> =
+    function (this, actual: any, predicate) {
+      return {
+        pass: actual.every(predicate),
+        message: () => 'Some items do not match the predicate',
+      };
     };
-  };
 
   expect.extend({ toAllSatisfy });
 

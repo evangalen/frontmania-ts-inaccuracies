@@ -1,7 +1,9 @@
 type MapIsoDate<Type extends string | null> = Type extends string ? Date : null;
 //   ^?
 
-const mapIsoDate = <Type extends string | null, Result = MapIsoDate<Type>>(isoDate: Type): Result => {
+const mapIsoDate = <Type extends string | null, Result = MapIsoDate<Type>>(
+  isoDate: Type,
+): Result => {
   if (!(typeof isoDate === 'string')) {
     return null as Result;
   }
@@ -67,9 +69,7 @@ const nullTypeExpected = mapIsoDate(null);
 })(); // 🠼
 // 🠺 utility type and less ugly type assertions
 (() => {
-  type MapIsoDate<Type extends string | null> = Type extends string
-    ? Date
-    : null;
+  type MapIsoDate<Type extends string | null> = Type extends string ? Date : null;
 
   const mapIsoDate = <Type extends string | null>(
     isoDate: Type,

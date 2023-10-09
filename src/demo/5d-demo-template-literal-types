@@ -1,0 +1,26 @@
+const _1 = document.querySelector('div');
+//    ^?
+
+const _2 = document.querySelector('div.a-class');
+//    ^?
+
+// ✂╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴
+// 🠺 only exact 'div' string literal returns a HTMLDivElement
+(() => {
+  const _1 = document.querySelector('div');
+  //    ^?
+
+  const _2 = document.querySelector('div.a-class');
+  //    ^?
+})(); // 🠼
+// 🠺 side-effect import: `import type from "typed-query-selector";`
+(() => {
+  // @ts-expect-error TS1232: An import declaration can only be used at the top level of a namespace or module.
+  import type from 'typed-query-selector';
+
+  const _1 = document.querySelector('div');
+  //    ^?
+
+  const _2 = document.querySelector('div.a-class');
+  //    ^?
+})(); // 🠼

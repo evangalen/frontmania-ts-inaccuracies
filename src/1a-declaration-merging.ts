@@ -19,10 +19,10 @@ const box: Box = {
     width: number;
     height: number;
   }
-  
-// interface Box {
-//   scale: number;
-// }
+
+  // interface Box {
+  //   scale: number;
+  // }
 
   const box: Box = { width: 5, height: 6 };
 })(); // 🠼

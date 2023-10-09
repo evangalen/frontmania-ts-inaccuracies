@@ -2,9 +2,7 @@ import { expectTypeOf } from 'expect-type';
 
 type FirstParameter<Type> = Type;
 
-expectTypeOf<
-  FirstParameter<(a: string, b: number) => void>
->().toEqualTypeOf<string>();
+expectTypeOf<FirstParameter<(a: string, b: number) => void>>().toEqualTypeOf<string>();
 expectTypeOf<FirstParameter<(a: string) => boolean>>().toEqualTypeOf<string>();
 expectTypeOf<FirstParameter<() => number>>().toBeNever();
 
@@ -18,9 +16,7 @@ expectTypeOf<FirstParameter<() => number>>().toBeNever();
     // @ts-expect-error
   >().toEqualTypeOf<string>();
   // @ts-expect-error
-  expectTypeOf<
-    FirstParameter<(a: string) => boolean>
-  >().toEqualTypeOf<string>();
+  expectTypeOf<FirstParameter<(a: string) => boolean>>().toEqualTypeOf<string>();
   // @ts-expect-error
   expectTypeOf<FirstParameter<() => number>>().toBeNever();
 })(); // 🠼
@@ -33,12 +29,8 @@ expectTypeOf<FirstParameter<() => number>>().toBeNever();
     ? FirstArg
     : never;
 
-  expectTypeOf<
-    FirstParameter<(a: string, b: number) => void>
-  >().toEqualTypeOf<string>();
-  expectTypeOf<
-    FirstParameter<(a: string) => boolean>
-  >().toEqualTypeOf<string>();
+  expectTypeOf<FirstParameter<(a: string, b: number) => void>>().toEqualTypeOf<string>();
+  expectTypeOf<FirstParameter<(a: string) => boolean>>().toEqualTypeOf<string>();
   // @ts-expect-error
   expectTypeOf<FirstParameter<() => number>>().toBeNever();
 })(); // 🠼
@@ -53,11 +45,7 @@ expectTypeOf<FirstParameter<() => number>>().toBeNever();
       : FirstArg
     : never;
 
-  expectTypeOf<
-    FirstParameter<(a: string, b: number) => void>
-  >().toEqualTypeOf<string>();
-  expectTypeOf<
-    FirstParameter<(a: string) => boolean>
-  >().toEqualTypeOf<string>();
+  expectTypeOf<FirstParameter<(a: string, b: number) => void>>().toEqualTypeOf<string>();
+  expectTypeOf<FirstParameter<(a: string) => boolean>>().toEqualTypeOf<string>();
   expectTypeOf<FirstParameter<() => number>>().toBeNever();
 })(); // 🠼

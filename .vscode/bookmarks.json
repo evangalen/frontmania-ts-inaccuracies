@@ -39,12 +39,12 @@
 			"path": "src/1c-declaration-merging.ts",
 			"bookmarks": [
 				{
-					"line": 14,
+					"line": 17,
 					"column": 21,
 					"label": ""
 				},
 				{
-					"line": 16,
+					"line": 19,
 					"column": 0,
 					"label": ""
 				}
@@ -121,6 +121,26 @@
 			]
 		},
 		{
+			"path": "src/4a-mapped-types.ts",
+			"bookmarks": [
+				{
+					"line": 2,
+					"column": 28,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "src/4b-mapped-types.ts",
+			"bookmarks": [
+				{
+					"line": 2,
+					"column": 47,
+					"label": ""
+				}
+			]
+		},
+		{
 			"path": "src/5a-template-literal-types.ts",
 			"bookmarks": [
 				{
@@ -131,10 +151,35 @@
 			]
 		},
 		{
+			"path": "src/demo/5c-demo-template-literal-types.ts",
+			"bookmarks": [
+				{
+					"line": 2,
+					"column": 32,
+					"label": ""
+				},
+				{
+					"line": 4,
+					"column": 43,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "src/demo/5d-demo-template-literal-types",
+			"bookmarks": [
+				{
+					"line": 0,
+					"column": 0,
+					"label": ""
+				}
+			]
+		},
+		{
 			"path": "src/6-path.ts",
 			"bookmarks": [
 				{
-					"line": 10,
+					"line": 7,
 					"column": 25,
 					"label": ""
 				}

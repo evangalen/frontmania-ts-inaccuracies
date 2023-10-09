@@ -3,10 +3,7 @@ const obj = {
   0: 'array-like-item',
 } as const;
 
-declare const sortNestedProperty: (
-  obj: object,
-  nestedProperty: string,
-) => void;
+declare const sortNestedProperty: (obj: object, nestedProperty: string) => void;
 
 sortNestedProperty(obj, '');
 
@@ -15,14 +12,10 @@ sortNestedProperty(obj, '');
 (() => {
   const obj = {
     nested: { child: 'child', deepNested: { deepNestedChild: true } },
-    0: 'array-like-item',
   } as const;
 
   // @ts-expect-error TS1184: Modifiers cannot appear here.
-  declare const sortNestedProperty: (
-    obj: object,
-    nestedProperty: string,
-  ) => void;
+  declare const sortNestedProperty: (obj: object, nestedProperty: string) => void;
 
   sortNestedProperty(obj, '');
 })(); // 🠼
@@ -93,7 +86,6 @@ sortNestedProperty(obj, '');
 
   type FilteredKeys<Type extends object> = Exclude<
     keyof Type,
-    | symbol
-    | (Type extends readonly any[] ? keyof Array<unknown> : never)
+    symbol | (Type extends readonly any[] ? keyof Array<unknown> : never)
   >;
 })(); // 🠼
