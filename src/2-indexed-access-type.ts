@@ -9,6 +9,11 @@ type _ = never;
   type _ = never;
   //   ^?
 })(); // 🠼
+// 🠺 with empty key (TS error)
+(() => {
+  type _ = Person[''];
+  //   ^?
+})(); // 🠼
 // 🠺 single key
 (() => {
   type _ = Person['name'];
@@ -19,15 +24,9 @@ type _ = never;
   type _ = Person['name' | 'age'];
   //   ^?
 })(); // 🠼
-// 🠺 union with all keys
+// 🠺 union with all keys including optional key
 (() => {
   type _ = Person['name' | 'age' | 'alive'];
-  //   ^?
-})(); // 🠼
-// 🠺 union with all keys with typo (TS error)
-(() => {
-  // @ts-expect-error TS2339: Property 'alve' does not exist on type 'Person'.
-  type _ = Person['name' | 'age' | 'alve'];
   //   ^?
 })(); // 🠼
 // 🠺 keyof

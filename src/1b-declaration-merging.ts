@@ -12,10 +12,7 @@ const result = JSON.parse('{}');
   // @ts-expect-error TS1234: An ambient module declaration is only allowed at the top level in a file.
   declare global {
     interface JSON {
-      parse(
-        text: string,
-        reviver?: (this: any, key: string, value: any) => any,
-      ): unknown;
+      parse(text: string, reviver?: (this: any, key: string, value: any) => any): unknown;
     }
   }
 

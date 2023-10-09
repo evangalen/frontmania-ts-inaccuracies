@@ -26,7 +26,7 @@ sortNestedProperty(obj, '');
 
   sortNestedProperty(obj, '');
 })(); // 🠼
-// 🠺 Path IIMT producing root keys
+// 🠺 type parameters on function + Path IIMT producing root keys
 (() => {
   const obj = {
     nested: { child: 'child', deepNested: { deepNestedChild: true } },

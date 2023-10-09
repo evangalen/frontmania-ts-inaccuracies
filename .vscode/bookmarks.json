@@ -1,0 +1,164 @@
+{
+	"files": [
+		{
+			"path": "src/1a-declaration-merging.ts",
+			"bookmarks": [
+				{
+					"line": 5,
+					"column": 0,
+					"label": ""
+				},
+				{
+					"line": 9,
+					"column": 9,
+					"label": ""
+				},
+				{
+					"line": 11,
+					"column": 12,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "src/1b-declaration-merging.ts",
+			"bookmarks": [
+				{
+					"line": 0,
+					"column": 12,
+					"label": ""
+				},
+				{
+					"line": 2,
+					"column": 0,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "src/1c-declaration-merging.ts",
+			"bookmarks": [
+				{
+					"line": 14,
+					"column": 21,
+					"label": ""
+				},
+				{
+					"line": 16,
+					"column": 0,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "src/demo/2a-demo-index-access-type.ts",
+			"bookmarks": [
+				{
+					"line": 2,
+					"column": 18,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "src/demo/2b-demo-index-access-type.ts",
+			"bookmarks": [
+				{
+					"line": 2,
+					"column": 23,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "src/demo/2c-demo-index-access-type.ts",
+			"bookmarks": [
+				{
+					"line": 2,
+					"column": 31,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "src/demo/2d-demo-index-access-type.ts",
+			"bookmarks": [
+				{
+					"line": 2,
+					"column": 41,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "src/demo/2e-demo-index-access-type.ts",
+			"bookmarks": [
+				{
+					"line": 2,
+					"column": 29,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "src/3a-conditional-types.ts",
+			"bookmarks": [
+				{
+					"line": 0,
+					"column": 14,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "src/3b-conditional-types.ts",
+			"bookmarks": [
+				{
+					"line": 2,
+					"column": 25,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "src/5a-template-literal-types.ts",
+			"bookmarks": [
+				{
+					"line": 3,
+					"column": 28,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "src/6-path.ts",
+			"bookmarks": [
+				{
+					"line": 10,
+					"column": 25,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "src/7-path-value.ts",
+			"bookmarks": [
+				{
+					"line": 14,
+					"column": 34,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "README.md",
+			"bookmarks": [
+				{
+					"line": 1,
+					"column": 0,
+					"label": ""
+				}
+			]
+		}
+	]
+}

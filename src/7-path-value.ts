@@ -7,12 +7,9 @@ const obj = {
   0: 'array-like-item',
 } as const;
 
-declare const getNestedProperty: <
-Type extends object,
-NestedProperty extends Path<Type>,
->(
-obj: Type,
-nestedProperty: NestedProperty,
+declare const getNestedProperty: <Type extends object, NestedProperty extends Path<Type>>(
+  obj: Type,
+  nestedProperty: NestedProperty,
 ) => unknown;
 
 const _ = getNestedProperty(obj, '');
@@ -42,17 +39,6 @@ expectTypeOf(
 ).toEqualTypeOf<true>(); // 🠼
 
 // ✂╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴
-// 🠺 Path of solution from `6-path.ts` file
-type Path<Type extends object> = {
-  [Key in FilteredKeys<Type>]:
-    | `${Key}`
-    | (Type[Key] extends object ? `${Key}.${Path<Type[Key]>}` : never);
-}[FilteredKeys<Type>];
-
-type FilteredKeys<Type extends object> = Exclude<
-  keyof Type,
-  symbol | (Type extends readonly any[] ? keyof Array<unknown> : never) | keyof Object
->; // 🠼
 // 🠺 getNestedProperty with fixed return type of `unknown`
 (() => {
   const obj = {
@@ -74,7 +60,7 @@ type FilteredKeys<Type extends object> = Exclude<
   const _ = getNestedProperty(obj, '');
   //    ^?
 })(); // 🠼
-// 🠺 PathValue conditional type with only `string` root keys
+// 🠺 return type using utility type + PathValue conditional type with only `string` root keys
 (() => {
   const obj = {
     tuple: ['idx0', { idx1: 'idx1' }, { idx2: 'idx2' }],
@@ -166,3 +152,15 @@ type FilteredKeys<Type extends object> = Exclude<
   type DestringifyKey<Type extends string> =
     Type extends `${infer NumberKey extends number}` ? NumberKey : Type;
 })(); // 🠼
+// ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴
+// 🠺 Path of solution from `6-path.ts` file
+type Path<Type extends object> = {
+  [Key in FilteredKeys<Type>]:
+    | `${Key}`
+    | (Type[Key] extends object ? `${Key}.${Path<Type[Key]>}` : never);
+}[FilteredKeys<Type>];
+
+type FilteredKeys<Type extends object> = Exclude<
+  keyof Type,
+  symbol | (Type extends readonly any[] ? keyof Array<unknown> : never) | keyof Object
+>; // 🠼
